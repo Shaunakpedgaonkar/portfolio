@@ -1,0 +1,65 @@
+.social-icons {
+  position: fixed; /* changed from absolute for better responsiveness */
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 100;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 2.1rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #00ffff;
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 15px #00ffff,
+    0 0 20px #00ffff;
+  filter: brightness(1.2);
+}
+
+.social-icons a:nth-child(1):hover {
+  color: #6e5494;
+  text-shadow:
+    0 0 5px #6e5494,
+    0 0 10px #6e5494,
+    0 0 15px #6e5494;
+}
+
+.social-icons a:nth-child(2):hover {
+  color: #ff3366;
+  text-shadow:
+    0 0 5px #ff3366,
+    0 0 10px #ff3366,
+    0 0 15px #ff3366;
+}
+
+.social-icons a:nth-child(3):hover {
+  color: #0077b5;
+  text-shadow:
+    0 0 5px #0077b5,
+    0 0 10px #0077b5,
+    0 0 15px #0077b5;
+}
+
+/* ✅ No changes needed for mobile now */
+@media screen and (max-width: 768px) {
+  .social-icons {
+    top: 30%;
+    left: 10px;
+    gap: 12px;
+  }
+
+  .social-icons a {
+    font-size: 1.9rem;
+  }
+}

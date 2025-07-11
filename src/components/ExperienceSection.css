@@ -1,0 +1,70 @@
+.experience-timeline {
+    padding: 40px;
+    background-color: #0f172a;
+    color: #fff;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .timeline-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #38bdf8;
+  }
+  
+  .timeline {
+    position: relative;
+    margin: 0 auto;
+    max-width: 700px;
+    padding-left: 20px;
+    border-left: 3px solid #38bdf8;
+  }
+  
+  .timeline-item {
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    position: absolute;
+    left: -9px;
+    top: 5px;
+  }
+  
+  .timeline-content h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #f1f5f9;
+  }
+  
+  .timeline-duration {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin-top: 4px;
+    display: inline-block;
+  }
+  
+  .timeline-content p {
+    margin: 12px 0;
+    color: #cbd5e1;
+  }
+  
+  .timeline-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .tech-tag {
+    background-color: #1e293b;
+    color: #38bdf8;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+  }
+  
