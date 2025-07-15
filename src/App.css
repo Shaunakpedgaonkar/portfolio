@@ -1,6 +1,4 @@
 body {
-   overscroll-behavior-x: contain; /* Prevents rubber band scroll */
-  -webkit-overflow-scrolling: touch; 
   overflow-y: auto;
   overflow-x: auto;
   background-color: black;
@@ -108,9 +106,3 @@ html {
   0%   { transform: translateX(-500%); }
   100% { transform: translateX(500%); }
 }
-
-canvas {
-  touch-action: pan-x;
-  pointer-events: auto;
-}
-
