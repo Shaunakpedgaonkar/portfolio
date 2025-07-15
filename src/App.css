@@ -1,5 +1,5 @@
 body {
-  overscroll-behavior-x: contain; /* Prevents rubber band scroll */
+   overscroll-behavior-x: contain; /* Prevents rubber band scroll */
   -webkit-overflow-scrolling: touch; 
   overflow-y: auto;
   overflow-x: auto;
@@ -109,36 +109,8 @@ html {
   100% { transform: translateX(500%); }
 }
 
-/* ... (other styles) ... */
-
 canvas {
-  touch-action: auto; /* allow default gestures */
-  /* pointer-events: none; */ /* <--- COMMENT OUT OR REMOVE THIS LINE */
+  touch-action: pan-x;
+  pointer-events: auto;
 }
-
-.horizontal-scroll-wrapper {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;  /* smoother, natural scrolling */
-  -webkit-overflow-scrolling: touch;  /* for smooth mobile scroll */
-  width: 100vw;
-  height: 100vh;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Hide scrollbar */
-.horizontal-scroll-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-/* On mobile, remove snapping completely for natural scroll */
-@media (max-width: 768px) {
-  .horizontal-scroll-wrapper {
-    scroll-snap-type: none;
-    scroll-behavior: smooth;
-  }
-}
-
 
