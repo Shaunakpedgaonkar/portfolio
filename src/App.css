@@ -1,4 +1,6 @@
 body {
+  overscroll-behavior-x: contain; /* Prevents rubber band scroll */
+  -webkit-overflow-scrolling: touch; 
   overflow-y: auto;
   overflow-x: auto;
   background-color: black;
@@ -106,3 +108,25 @@ html {
   0%   { transform: translateX(-500%); }
   100% { transform: translateX(500%); }
 }
+
+/* ... (other styles) ... */
+
+canvas {
+  touch-action: auto; /* allow default gestures */
+  /* pointer-events: none; */ /* <--- COMMENT OUT OR REMOVE THIS LINE */
+}
+
+/* Optional: If needed, add touch-action to the wrapper for explicit horizontal panning */
+.horizontal-scroll-wrapper {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  width: 100vw;
+  height: 100vh;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  touch-action: pan-x; /* Add this for explicit horizontal scrolling */
+}
+
+

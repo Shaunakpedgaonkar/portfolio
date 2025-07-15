@@ -3,11 +3,13 @@ import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { OrbitControls, Environment } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
+import './ModelViewer.css'; // ✅ Import external CSS
 
 function Model({ isMobile }) {
   const ref = useRef();
   const gltf = useLoader(GLTFLoader, '/model.glb');
   const [hovered, setHovered] = useState(false);
+
   useEffect(() => {
     gltf.scene.traverse((child) => {
       if (child.isMesh) {
@@ -27,12 +29,14 @@ function Model({ isMobile }) {
       }
     });
   }, [gltf]);
+
   useFrame(() => {
     if (ref.current) {
       const rotationSpeed = hovered ? 0.003 : 0.005;
       ref.current.rotation.z += rotationSpeed;
     }
   });
+
   return (
     <primitive
       object={gltf.scene}
@@ -47,14 +51,16 @@ function Model({ isMobile }) {
 
 export default function ModelViewer() {
   const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
   return (
-    <div className={isMobile ? 'model-mobile' : ''} style={{ width: '100vw', height: '100vh', background: 'transparent' }}>
+    <div className="model-wrapper">
       <Canvas camera={{ position: [0, 0, 13], fov: 30 }} shadows>
         <Suspense fallback={null}>
           <ambientLight intensity={0.2} />

@@ -18,23 +18,48 @@ function App() {
   const [pageIndex, setPageIndex] = useState(0);
   const totalPages = 6;
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    const handleScroll = () => {
-      const scrollLeft = scrollContainer.scrollLeft;
-      const pageWidth = scrollContainer.clientWidth;
-      const index = Math.round(scrollLeft / pageWidth);
-      setPageIndex(index);
-    };
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
-    }
-    return () => {
-      if (scrollContainer) {
-        scrollContainer.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, []);
+  // Add this in your main component (e.g. App.js or HomePage.js)
+useEffect(() => {
+  const container = document.querySelector('.horizontal-scroll-wrapper');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  const start = (e) => {
+    isDown = true;
+    startX = e.pageX || e.touches[0].pageX;
+    scrollLeft = container.scrollLeft;
+  };
+
+  const move = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX || e.touches[0].pageX;
+    const walk = (startX - x);
+    container.scrollLeft = scrollLeft + walk;
+  };
+
+  const end = () => isDown = false;
+
+  container.addEventListener('mousedown', start);
+  container.addEventListener('mousemove', move);
+  container.addEventListener('mouseup', end);
+  container.addEventListener('mouseleave', end);
+  container.addEventListener('touchstart', start);
+  container.addEventListener('touchmove', move);
+  container.addEventListener('touchend', end);
+
+  return () => {
+    container.removeEventListener('mousedown', start);
+    container.removeEventListener('mousemove', move);
+    container.removeEventListener('mouseup', end);
+    container.removeEventListener('mouseleave', end);
+    container.removeEventListener('touchstart', start);
+    container.removeEventListener('touchmove', move);
+    container.removeEventListener('touchend', end);
+  };
+}, []);
+
 
   return (
     <>

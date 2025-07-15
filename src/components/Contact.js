@@ -71,8 +71,8 @@
                 </button>
               </form>
 
-              <a href="SHAUNAK RESUME.pdf" download className="resume-download">
-                Download Resume 
+              <a href="Shaunak_Resume.pdf" download className="resume-download">
+                Download Resume  
               </a>
               <p className="contact-phone"> Ph. No. +353 894948113</p>
               </>

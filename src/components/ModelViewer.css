@@ -1,0 +1,21 @@
+.model-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Disable pointer events on canvas only for mobile */
+@media screen and (max-width: 768px) {
+  .model-wrapper canvas {
+    pointer-events: none !important;
+    touch-action: pan-x !important;
+  }
+}
+
+/* Base canvas rule (desktop) */
+canvas {
+  touch-action: pan-x;
+  pointer-events: auto;
+}
