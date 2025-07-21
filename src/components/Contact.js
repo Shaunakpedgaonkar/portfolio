@@ -71,7 +71,7 @@
                 </button>
               </form>
 
-              <a href="Shaunak_Resume.pdf" download className="resume-download">
+              <a href="Shaunak_Pedgaonkar_Toast_Software_Engineer" download className="resume-download">
                 Download Resume  
               </a>
               <p className="contact-phone"> Ph. No. +353 894948113</p>
