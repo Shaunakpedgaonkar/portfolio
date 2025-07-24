@@ -72,8 +72,8 @@ const Contact = () => {
             </form>
 
             <a
-              href="/Shaunak_Pedgaonkar_Resume.pdf"
-              download="Shaunak_Pedgaonkar_Resume.pdf"
+              href="/Shaunak_Pedgaonkar_Resume_developer.pdf"
+              download="Shaunak_Pedgaonkar_Resume_developer.pdf"
               className="resume-download"
               target="_blank"
               rel="noopener noreferrer"
