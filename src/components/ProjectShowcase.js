@@ -8,9 +8,9 @@ export default function ProjectShowcase() {
 
       {/* Desktop version */}
       <p className="desktop-only">
-        A curious CS postgrad passionate about building scalable apps, smart systems, and meaningful tech.
+       Computer Science postgraduate from Trinity College Dublin, passionate about building scalable applications, intelligent systems, and technology that makes a difference.
         <br /><br />
-        I build full-stack apps, design resilient cloud systems, and explore AI/ML to solve real-world problems.
+        I build full-stack apps, Intruiged in designing scalable system , and exploring AI/ML to solve real-world problems.
       </p>
 
       {/* Mobile version */}

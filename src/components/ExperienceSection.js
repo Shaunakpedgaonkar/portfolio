@@ -3,17 +3,17 @@ import "./ExperienceSection.css";
 
 const experiences = [
   {
-    company: "AMS BuildTech Pvt Ltd",
-    role: "Intern",
-    duration: "May 2021 – August 2021",
+    company: "AMS BuildTech Pvt Ltd, Pune, India",
+    role: "Programming Analyst",
+    duration: "Jan 2022 – Jul 2023",
     description: [
-      "Developed internal tools for project scheduling and cost estimation, reducing budgeting cycle time by 15%.",
-      "Built real-time interactive dashboards using Excel and Python, improving stakeholder reporting clarity by 20%.",
+      "Spearheaded the development of software tools that automated project scheduling and cost estimation, reducing planning time by 25% and improving budgeting accuracy",
+      "Built data-driven Excel dashboards using Python to visualize construction KPIs across 5+ live projects, enhancing executive decision-making and reducing reporting time by 20%.",
       "Assisting project managers and engineers in the planning and execution of construction projects.",
-      "Collaborating with team members to prepare project reports, progress updates, and documentation.",
-      "Assisting project managers and engineers in the planning and execution of construction projects",
+      "Maintained clear technical documentation and provided on-call support, improving internal issue resolution speed by 20%.",
+      "Streamlined resource allocation workflows by building scripts, replacing manual processes and accelerating project timelines",
       "Supporting project teams in cost estimation, budgeting, and resource allocation",
-      ,
+      
     ],
     technologies: [], // No specific technologies listed for now.
   },
