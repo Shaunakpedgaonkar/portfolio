@@ -86,7 +86,7 @@ Databases:  MySQL, MongoDB, AWS (EC2, S3, RDS, Route 53), Docker`;
         overflowY: "auto",
       }}
     >
-      <div style={{ fontWeight: "bold", marginBottom: 16 }}>{"> show skills"}</div>
+      <div style={{ fontWeight: "bold", marginBottom: 16 }}>{"> skills"}</div>
       <div>{displayedText}</div>
       <span
         style={{

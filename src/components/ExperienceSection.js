@@ -7,12 +7,12 @@ const experiences = [
     role: "Programming Analyst",
     duration: "Jan 2022 – Jul 2023",
     description: [
-      "Spearheaded the development of software tools that automated project scheduling and cost estimation, reducing planning time by 25% and improving budgeting accuracy",
-      "Built data-driven Excel dashboards using Python to visualize construction KPIs across 5+ live projects, enhancing executive decision-making and reducing reporting time by 20%.",
-      "Assisting project managers and engineers in the planning and execution of construction projects.",
-      "Maintained clear technical documentation and provided on-call support, improving internal issue resolution speed by 20%.",
-      "Streamlined resource allocation workflows by building scripts, replacing manual processes and accelerating project timelines",
-      "Supporting project teams in cost estimation, budgeting, and resource allocation",
+      "Spearheaded development of Flask- and Java-based microservices, automation scripts, and Python-powered Excel dashboards to optimize scheduling, cost estimation, and KPI reporting across 5+ enterprise/construction projects.",
+      "Reduced planning time by 25% and reporting time by 20% by streamlining workflows and replacing manual processes with data-driven automation",
+      "Built system health and monitoring tools (CPU, memory, connections) that improved fault detection, reduced downtime, and enhanced reliability",
+      "Streamlined resource allocation processes, accelerating project timelines and improving budgeting accuracy",
+      "Maintained clear technical documentation and optimized post-deployment support, improving internal issue resolution speed by 20%",
+      "Collaborated with cross-functional teams (project managers, engineers, QA, stakeholders) in agile sprints, contributing to planning, testing, code reviews, and release readiness",
       
     ],
     technologies: [], // No specific technologies listed for now.
