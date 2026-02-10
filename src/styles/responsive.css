@@ -1,0 +1,360 @@
+/* ============================================
+   RESPONSIVE UTILITIES & FLUID TYPOGRAPHY
+   Modern responsive design system with:
+   - Fluid typography using clamp()
+   - CSS custom properties for consistency
+   - Multiple breakpoint support
+   - No layout shifts (CLS optimization)
+   - Hardware acceleration where needed
+   ============================================ */
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================ */
+:root {
+  /* Fluid Typography Scale */
+  --font-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --font-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --font-lg: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
+  --font-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --font-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem);
+  --font-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3rem);
+  --font-5xl: clamp(3rem, 2rem + 5vw, 4rem);
+
+  /* Fluid Spacing Scale */
+  --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+  --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --space-xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --space-2xl: clamp(3rem, 2rem + 5vw, 5rem);
+
+  /* Container widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+
+  /* Safe area insets for notched devices */
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+
+  /* Touch target minimum size (WCAG) */
+  --touch-target-min: 44px;
+
+  /* Animation timings */
+  --transition-fast: 150ms;
+  --transition-base: 300ms;
+  --transition-slow: 500ms;
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ============================================
+   BASE RESPONSIVE FIXES
+   ============================================ */
+
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Stable scrollbar to prevent layout shifts */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Smooth scrolling with reduced motion respect */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ============================================
+   RESPONSIVE IMAGES & MEDIA
+   ============================================ */
+
+img, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Canvas elements (R3F/Three.js) manage their own dimensions via inline styles */
+canvas {
+  display: block;
+}
+
+/* Aspect ratio containers for CLS prevention */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+
+/* Flex utilities */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grid utilities */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-md);
+}
+
+/* Container with responsive padding */
+.container-responsive {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* ============================================
+   VISIBILITY UTILITIES
+   ============================================ */
+
+/* Hide on mobile */
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide on tablet and up */
+@media (min-width: 768px) {
+  .hide-tablet-up {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop */
+@media (min-width: 1024px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile */
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Show only on desktop */
+@media (max-width: 1023px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   TOUCH-FRIENDLY ADJUSTMENTS
+   ============================================ */
+
+/* Larger touch targets on mobile */
+@media (max-width: 768px) {
+  button,
+  [role="button"],
+  a,
+  input,
+  select,
+  textarea {
+    min-height: var(--touch-target-min);
+  }
+
+  /* Prevent zoom on input focus (iOS) */
+  input, select, textarea {
+    font-size: max(16px, 1rem);
+  }
+}
+
+/* ============================================
+   PERFORMANCE UTILITIES
+   ============================================ */
+
+/* Hardware acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optimize paint for fixed elements */
+.optimize-fixed {
+  contain: layout style paint;
+}
+
+/* Content visibility for off-screen optimization */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ============================================
+   SAFE AREA SUPPORT (Notched devices)
+   ============================================ */
+
+.safe-area-top {
+  padding-top: var(--safe-area-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: var(--safe-area-bottom);
+}
+
+.safe-area-left {
+  padding-left: var(--safe-area-left);
+}
+
+.safe-area-right {
+  padding-right: var(--safe-area-right);
+}
+
+.safe-area-all {
+  padding: var(--safe-area-top) var(--safe-area-right) var(--safe-area-bottom) var(--safe-area-left);
+}
+
+/* ============================================
+   BREAKPOINT-SPECIFIC STYLES
+   ============================================ */
+
+/* Extra small devices (phones, less than 480px) */
+@media (max-width: 479px) {
+  :root {
+    --font-base: 0.9rem;
+  }
+}
+
+/* Small devices (phones, 480px to 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  :root {
+    --font-base: 0.95rem;
+  }
+}
+
+/* Medium devices (tablets, 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --font-base: 1rem;
+  }
+}
+
+/* Large devices (desktops, 1024px to 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  :root {
+    --font-base: 1rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1280px to 1535px) */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  :root {
+    --font-base: 1.05rem;
+  }
+}
+
+/* 2XL devices (larger desktops, 1536px and up) */
+@media (min-width: 1536px) {
+  :root {
+    --font-base: 1.1rem;
+  }
+}
+
+/* 4K and high-resolution displays */
+@media (min-width: 2560px) {
+  :root {
+    --font-base: 1.2rem;
+    --space-md: 2rem;
+    --space-lg: 3rem;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   HIGH CONTRAST MODE SUPPORT
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: currentColor;
+  }
+
+  button, a {
+    border: 2px solid currentColor;
+  }
+}
+
+/* ============================================
+   DARK MODE ADJUSTMENTS (if system prefers)
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}

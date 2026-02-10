@@ -124,45 +124,239 @@
   background: #ff3f81;
   color: black;
 }
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .projects-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .projects-content {
+    max-width: 95%;
+  }
+
+  .projects-heading {
+    font-size: 2.25rem;
+  }
+}
+
+/* Mobile (up to 768px) */
 @media screen and (max-width: 768px) {
   .projects-section {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
+    padding-top: clamp(70px, 12vh, 90px);
+    padding-bottom: clamp(20px, 4vh, 40px);
     align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .projects-content {
     max-width: 100%;
-    padding: 0 1.5rem;
+    padding: 0 0.75rem;
+    width: 100%;
+  }
+
+  .projects-heading {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .project-list {
+    gap: 0.875rem;
+    align-items: stretch;
+    max-height: 65vh;
+    padding-right: 0.25rem;
+    width: 100%;
+  }
+
+  .project-wrapper {
+    padding: 0.875rem 1rem;
+    border-left-width: 3px;
+    margin-left: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .popup-box.mobile.show {
+    max-height: 400px;
+  }
+
+  .project-name {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    line-height: 1.3;
+  }
+
+  .popup-box {
+    padding: 0.875rem;
+    margin-top: 0.625rem;
+  }
+
+  .popup-box p {
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  .view-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Small mobile (up to 480px) */
+@media screen and (max-width: 480px) {
+  .projects-section {
+    padding: 1rem 0.75rem;
+    padding-top: 60px;
+    padding-bottom: 20px;
+  }
+
+  .projects-content {
+    padding: 0 0.5rem;
+  }
+
+  .projects-heading {
+    font-size: 1.65rem;
+    margin-bottom: 1.25rem;
   }
 
   .project-list {
     gap: 0.75rem;
-    align-items: flex-start;
+    max-height: 68vh;
   }
 
   .project-wrapper {
-    padding: 0.8rem 1rem;
-    border-left-width: 2px;
-    margin-left: 0.5rem;
-    width: 95%;
-  }
-
-  .popup-box.mobile.show {
-    max-height: 500px;
+    padding: 0.75rem 0.875rem;
   }
 
   .project-name {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .popup-box p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    line-height: 1.55;
   }
 
   .view-button {
-    font-size: 0.85rem;
-    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
 }
 
+/* Extra small mobile (up to 360px) */
+@media screen and (max-width: 360px) {
+  .projects-section {
+    padding-top: 55px;
+  }
 
+  .projects-heading {
+    font-size: 1.5rem;
+  }
+
+  .project-name {
+    font-size: 0.9rem;
+  }
+
+  .popup-box p {
+    font-size: 0.75rem;
+  }
+}
+
+/* Landscape mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .projects-section {
+    padding: 0.75rem 1.5rem;
+    padding-top: 50px;
+    overflow-y: auto;
+  }
+
+  .projects-heading {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-list {
+    max-height: 60vh;
+    gap: 0.5rem;
+  }
+
+  .project-wrapper {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .project-name {
+    font-size: 0.9rem;
+  }
+
+  .popup-box p {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+}
+
+/* Large screens (1440px+) */
+@media screen and (min-width: 1440px) {
+  .projects-content {
+    max-width: 1000px;
+  }
+
+  .projects-heading {
+    font-size: 2.75rem;
+  }
+
+  .project-name {
+    font-size: 1.3rem;
+  }
+
+  .popup-box p {
+    font-size: 1.05rem;
+  }
+}
+
+/* 4K displays */
+@media screen and (min-width: 2560px) {
+  .projects-section {
+    padding: 5rem 3rem;
+  }
+
+  .projects-content {
+    max-width: 1200px;
+  }
+
+  .projects-heading {
+    font-size: 3rem;
+  }
+
+  .project-name {
+    font-size: 1.4rem;
+  }
+
+  .popup-box p {
+    font-size: 1.15rem;
+  }
+
+  .view-button {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .popup-box,
+  .popup-box.mobile,
+  .project-wrapper {
+    transition: none;
+  }
+}

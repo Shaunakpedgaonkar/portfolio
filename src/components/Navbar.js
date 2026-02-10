@@ -7,6 +7,12 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      {/* Glassmorphism overlay backdrop */}
+      <div
+        className={`nav-overlay ${menuOpen ? "visible" : ""}`}
+        onClick={() => setMenuOpen(false)}
+      />
+
       <div className="nav-container">
         {/* Hamburger */}
         <div className="hamburger" onClick={toggleMenu}>
@@ -23,6 +29,7 @@ const Navbar = () => {
           <li><a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a></li>
           <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>
           <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+          <li><a href="/test" onClick={() => setMenuOpen(false)}>Test</a></li>
 
         </ul>
       </div>

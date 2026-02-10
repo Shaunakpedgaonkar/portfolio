@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(npm run build:*)",
+      "Bash(CI=false npm run build:*)",
+      "Bash(ls -la \"c:\\\\Users\\\\SHAUNAK\\\\Documents\\\\portfolio2\\\\portfolio-3d\\\\public\\\\hdri\"\" 2>&1 || echo \"Directory does not exist \")",
+      "Bash(set DISABLE_ESLINT_PLUGIN=true)",
+      "Bash($env:DISABLE_ESLINT_PLUGIN='true')",
+      "Bash(DISABLE_ESLINT_PLUGIN=true npm run build:*)",
+      "Bash(npx react-scripts build:*)",
+      "Bash(findstr:*)"
+    ]
+  }
+}

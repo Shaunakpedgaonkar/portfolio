@@ -1,6 +1,10 @@
+/* ============================================
+   CONTACT SECTION STYLES
+   ============================================ */
 .contact-section {
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   position: relative;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
@@ -8,98 +12,171 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #111;
 }
 
 .contact-content {
   position: relative;
   z-index: 1;
   text-align: center;
-  width: 90%;
-  max-width: 500px;
-  padding: 20px;
+  width: min(90%, 500px);
+  padding: clamp(16px, 4vw, 24px);
 }
 
 .contact-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  margin-bottom: clamp(16px, 3vw, 24px);
+  font-weight: 600;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: clamp(12px, 2vw, 16px);
 }
 
 .contact-form input,
 .contact-form textarea {
-  padding: 12px 15px;
-  font-size: 1rem;
+  padding: clamp(10px, 2vw, 14px) clamp(12px, 2.5vw, 16px);
+  font-size: clamp(0.875rem, 2vw, 1rem);
   border-radius: 8px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   outline: none;
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  min-height: 44px; /* Touch target */
+  font-family: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #ccc;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
 .contact-form button {
-  padding: 12px;
-  font-size: 1rem;
-  background-color: #0077ff;
+  padding: clamp(10px, 2vw, 14px);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  background: linear-gradient(135deg, #0077ff 0%, #0055cc 100%);
   border: none;
   border-radius: 8px;
   color: white;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 44px; /* Touch target */
+  font-weight: 600;
+  font-family: inherit;
 }
 
-.contact-form button:hover {
-  background-color: #005fd1;
+.contact-form button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.4);
+}
+
+.contact-form button:active {
+  transform: translateY(0);
+}
+
+.contact-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .resume-download {
   display: inline-block;
-  margin-top: 25px;
-  padding: 10px 16px;
+  margin-top: clamp(20px, 4vw, 28px);
+  padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px);
   background-color: #fff;
   color: #000;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 44px;
+  font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 .resume-download:hover {
-  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
 .contact-phone {
-  margin-top: 15px;
-  font-size: 1rem;
+  margin-top: clamp(12px, 2.5vw, 16px);
+  font-size: clamp(0.875rem, 2vw, 1rem);
   color: #fff;
   opacity: 0.85;
 }
 
+/* Lottie animation wrapper */
+.lottie-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.lottie-wrapper svg {
+  max-width: min(300px, 80vw);
+  height: auto;
+}
+
+.thank-you-text {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: #00ff00;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  .contact-content {
+    padding: 1rem;
+    padding-top: clamp(60px, 10vh, 80px);
+  }
+
+  .contact-content h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Small mobile (up to 480px) */
 @media (max-width: 480px) {
   .contact-content {
-    width: 92%;
-    padding: 8px;
-    margin-top: 60px;
+    width: 95%;
+    padding: 0.75rem;
+    padding-top: 50px;
+  }
+
+  .contact-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .contact-form {
-    margin-top: 30px;
+    gap: 10px;
   }
 
   .contact-form input,
   .contact-form textarea {
-    font-size: 0.9rem;
-    padding: 10px 10px;
+    font-size: 16px; /* Prevent iOS zoom */
+    padding: 10px 12px;
     border-radius: 6px;
   }
 
@@ -110,12 +187,116 @@
   }
 
   .resume-download {
-    font-size: 0.85rem;
-    padding: 7px 10px;
+    font-size: 0.875rem;
+    padding: 8px 12px;
     border-radius: 6px;
+    margin-top: 1rem;
   }
 
   .contact-phone {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    margin-top: 0.75rem;
+  }
+}
+
+/* Extra small mobile (up to 360px) */
+@media (max-width: 360px) {
+  .contact-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 8px 10px;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .contact-section {
+    overflow-y: auto;
+  }
+
+  .contact-content {
+    padding: 0.75rem 1rem;
+    padding-top: 50px;
+  }
+
+  .contact-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-form {
+    gap: 8px;
+  }
+
+  .contact-form textarea {
+    min-height: 60px;
+  }
+}
+
+/* Large screens (1440px+) */
+@media (min-width: 1440px) {
+  .contact-content {
+    max-width: 550px;
+  }
+
+  .contact-content h2 {
+    font-size: 2.75rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1.05rem;
+    padding: 14px 18px;
+  }
+
+  .contact-form button {
+    font-size: 1.05rem;
+    padding: 14px;
+  }
+}
+
+/* 4K displays */
+@media (min-width: 2560px) {
+  .contact-content {
+    max-width: 650px;
+    padding: 2rem;
+  }
+
+  .contact-content h2 {
+    font-size: 3rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1.15rem;
+    padding: 16px 20px;
+    border-radius: 10px;
+  }
+
+  .contact-form button {
+    font-size: 1.15rem;
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .resume-download {
+    font-size: 1.1rem;
+    padding: 14px 24px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .contact-form button,
+  .resume-download {
+    transition: none;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    transition: none;
   }
 }

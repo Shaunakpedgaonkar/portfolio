@@ -1,70 +1,285 @@
+/* ============================================
+   EXPERIENCE SECTION STYLES
+   ============================================ */
 .experience-timeline {
-    padding: 40px;
-    background-color: #0f172a;
-    color: #fff;
-    min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background-color: #0f172a;
+  color: #fff;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.timeline-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  max-width: min(700px, 90vw);
+  padding-left: clamp(16px, 3vw, 24px);
+  border-left: 3px solid #38bdf8;
+  width: 100%;
+}
+
+.timeline-item {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  position: relative;
+  padding-left: clamp(0.5rem, 2vw, 1rem);
+}
+
+.timeline-dot {
+  width: clamp(12px, 2vw, 16px);
+  height: clamp(12px, 2vw, 16px);
+  background-color: #38bdf8;
+  border-radius: 50%;
+  position: absolute;
+  left: calc(-1 * clamp(16px, 3vw, 24px) - clamp(6px, 1vw, 8px) + 1.5px);
+  top: 5px;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+.timeline-content h2 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: #f1f5f9;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.timeline-duration {
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  color: #94a3b8;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.timeline-description {
+  margin: clamp(0.75rem, 2vw, 1rem) 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.timeline-description li {
+  margin-bottom: clamp(0.5rem, 1.5vw, 0.75rem);
+  color: #cbd5e1;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  line-height: 1.6;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.timeline-description li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #38bdf8;
+}
+
+.timeline-content p {
+  margin: clamp(0.5rem, 1.5vw, 0.75rem) 0;
+  color: #cbd5e1;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  line-height: 1.6;
+}
+
+.timeline-project {
+  margin-top: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.timeline-project + .timeline-project {
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+.exp-project-name {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: #38bdf8;
+  font-weight: 500;
+  margin: clamp(0.5rem, 1vw, 0.75rem) 0 clamp(0.25rem, 0.5vw, 0.5rem);
+  font-style: italic;
+}
+
+.timeline-description li strong {
+  color: #e2e8f0;
+}
+
+.timeline-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(6px, 1vw, 8px);
+  margin-top: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.tech-tag {
+  background-color: #1e293b;
+  color: #38bdf8;
+  padding: clamp(3px, 0.5vw, 5px) clamp(8px, 1.5vw, 12px);
+  border-radius: 12px;
+  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  .experience-timeline {
+    padding: 1.5rem 1rem;
+    padding-top: clamp(60px, 10vh, 80px);
   }
-  
+
   .timeline-title {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #38bdf8;
+    margin-bottom: 1.5rem;
   }
-  
+
   .timeline {
-    position: relative;
-    margin: 0 auto;
-    max-width: 700px;
-    padding-left: 20px;
-    border-left: 3px solid #38bdf8;
+    max-width: 100%;
+    padding-left: 1rem;
   }
-  
+
   .timeline-item {
-    margin-bottom: 40px;
-    position: relative;
+    padding-left: 0.5rem;
   }
-  
+
   .timeline-dot {
-    width: 16px;
-    height: 16px;
-    background-color: #38bdf8;
-    border-radius: 50%;
-    position: absolute;
-    left: -9px;
-    top: 5px;
+    left: -1.25rem;
   }
-  
+
   .timeline-content h2 {
-    margin: 0;
+    font-size: 1.1rem;
+  }
+}
+
+/* Small mobile (up to 480px) */
+@media (max-width: 480px) {
+  .experience-timeline {
+    padding: 1rem 0.75rem;
+    padding-top: 50px;
+  }
+
+  .timeline-title {
     font-size: 1.5rem;
-    color: #f1f5f9;
+    margin-bottom: 1.25rem;
   }
-  
-  .timeline-duration {
+
+  .timeline {
+    padding-left: 0.875rem;
+    border-left-width: 2px;
+  }
+
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    left: -1rem;
+  }
+
+  .timeline-content h2 {
+    font-size: 1rem;
+  }
+
+  .timeline-description li {
+    font-size: 0.8rem;
+    padding-left: 1rem;
+  }
+}
+
+/* Extra small mobile (up to 360px) */
+@media (max-width: 360px) {
+  .timeline-content h2 {
     font-size: 0.95rem;
-    color: #94a3b8;
-    margin-top: 4px;
-    display: inline-block;
   }
-  
-  .timeline-content p {
-    margin: 12px 0;
-    color: #cbd5e1;
+
+  .timeline-description li {
+    font-size: 0.75rem;
   }
-  
-  .timeline-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  
+
   .tech-tag {
-    background-color: #1e293b;
-    color: #38bdf8;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.85rem;
+    font-size: 0.7rem;
+    padding: 2px 6px;
   }
-  
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .experience-timeline {
+    padding: 0.75rem 1.5rem;
+    padding-top: 50px;
+  }
+
+  .timeline-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-item {
+    margin-bottom: 1rem;
+  }
+
+  .timeline-content h2 {
+    font-size: 1rem;
+  }
+
+  .timeline-description li {
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* Large screens (1440px+) */
+@media (min-width: 1440px) {
+  .timeline {
+    max-width: 800px;
+  }
+
+  .timeline-title {
+    font-size: 2.75rem;
+  }
+
+  .timeline-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .timeline-description li {
+    font-size: 1.05rem;
+  }
+}
+
+/* 4K displays */
+@media (min-width: 2560px) {
+  .experience-timeline {
+    padding: 4rem;
+  }
+
+  .timeline {
+    max-width: 900px;
+    padding-left: 2rem;
+  }
+
+  .timeline-title {
+    font-size: 3rem;
+  }
+
+  .timeline-content h2 {
+    font-size: 1.75rem;
+  }
+
+  .timeline-description li {
+    font-size: 1.15rem;
+  }
+
+  .tech-tag {
+    font-size: 1rem;
+    padding: 6px 14px;
+  }
+}

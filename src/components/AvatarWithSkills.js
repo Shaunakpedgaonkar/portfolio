@@ -3,6 +3,13 @@ import React, { Suspense, useRef, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Environment, useAnimations } from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
+import "./AvatarWithSkills.css";
+
+// Wrapper to handle OrbitControls with proper ref initialization
+function SafeOrbitControls(props) {
+  const controlsRef = useRef(null);
+  return <OrbitControls ref={controlsRef} {...props} />;
+}
 
 // Avatar Loader with Looping Animation
 function AvatarModel() {
@@ -44,11 +51,10 @@ function AvatarModel() {
 }
 
 // Terminal Console with Typing Animation Triggered on Scroll
-function SkillsConsole() {
+function SkillsConsole({ isReducedMotion }) {
   const fullText = `Languages: Java, Python, C/C++, JavaScript, SQL, HTML/CSS
 Frameworks: React, Node.js, Flask, WordPress, Django
 Databases:  MySQL, MongoDB, AWS (EC2, S3, RDS, Route 53), Docker`;
-
 
   const [displayedText, setDisplayedText] = useState("");
   const [index, setIndex] = useState(0);
@@ -59,94 +65,96 @@ Databases:  MySQL, MongoDB, AWS (EC2, S3, RDS, Route 53), Docker`;
   });
 
   useEffect(() => {
+    // If reduced motion, show all text immediately
+    if (isReducedMotion) {
+      setDisplayedText(fullText);
+      setIndex(fullText.length);
+      return;
+    }
+
     if (inView && index < fullText.length) {
       const timeout = setTimeout(() => {
         setDisplayedText(prev => prev + fullText.charAt(index));
         setIndex(index + 1);
-      }, 30); // ← Slow this down by increasing the value (e.g., 50 or 80)
+      }, 30);
       return () => clearTimeout(timeout);
     }
-  }, [inView, index, fullText]);
+  }, [inView, index, fullText, isReducedMotion]);
 
   return (
-    <div
-      ref={ref}
-      style={{
-        background: "#111",
-        color: "#00ff00",
-        fontFamily: "'Fira Code', 'Courier New', monospace",
-        padding: "24px 32px",
-        borderRadius: 12,
-        width: "420px",
-        minHeight: "320px",
-        boxShadow: "0 0 16px #00ff0033",
-        fontSize: "16px",
-        lineHeight: "1.7",
-        whiteSpace: "pre-line",
-        overflowY: "auto",
-      }}
-    >
-      <div style={{ fontWeight: "bold", marginBottom: 16 }}>{"> skills"}</div>
-      <div>{displayedText}</div>
-      <span
-        style={{
-          display: "inline-block",
-          width: 10,
-          height: 20,
-          background: "#00ff00",
-          marginTop: 8,
-          animation: "blink 1s step-start 0s infinite",
-        }}
-      />
-      <style>{`@keyframes blink { 50% { opacity: 0; } }`}</style>
+    <div ref={ref} className="skills-console">
+      <div className="skills-console-header">{"> skills"}</div>
+      <div className="skills-console-text">{displayedText}</div>
+      <span className="skills-console-cursor" />
+    </div>
+  );
+}
+
+// 3D Fallback for low-end devices
+function Avatar3DFallback() {
+  return (
+    <div className="avatar-fallback">
+      <div className="avatar-fallback-icon">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 20v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1" />
+        </svg>
+      </div>
+      <p>3D Avatar</p>
     </div>
   );
 }
 
 // Final Combined Layout Component
-export default function AvatarWithSkills() {
+export default function AvatarWithSkills({ qualitySettings = {} }) {
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkReducedMotion = () => {
+      setIsReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    };
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkReducedMotion();
+    checkMobile();
+
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    motionQuery.addEventListener('change', checkReducedMotion);
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      motionQuery.removeEventListener('change', checkReducedMotion);
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  const show3D = qualitySettings.enable3D !== false;
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100vw",
-        height: "100vh",
-        background: "#18191a",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "Orbitron, 'Segoe UI', Arial, sans-serif",
-        overflow: "hidden",
-        padding: "2vh",
-      }}
-    >
+    <div className="avatar-skills-container">
       {/* Left: 3D Avatar */}
-      <div
-        style={{
-          width: "45vw",
-          height: "80vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "radial-gradient(ellipse at center, #333 50%, transparent 100%)",
-          borderRadius: 24,
-          boxShadow: "0 0 32px #000a",
-          marginRight: "3vw",
-        }}
-      >
-        <Canvas camera={{ position: [0, 1.4, 4], fov: 35 }}>
-          <ambientLight intensity={0.7} />
-          <directionalLight position={[2, 6, 4]} intensity={1.2} />
-          <Suspense fallback={null}>
-            <AvatarModel />
-            <Environment preset="city" />
-            <OrbitControls enablePan={false} enableZoom={false} />
-          </Suspense>
-        </Canvas>
+      <div className="avatar-section">
+        {show3D ? (
+          <Canvas camera={{ position: [0, 1.4, 4], fov: 35 }}>
+            <ambientLight intensity={0.7} />
+            <directionalLight position={[2, 6, 4]} intensity={1.2} />
+            <Suspense fallback={null}>
+              <AvatarModel />
+              <Environment preset="city" />
+              <SafeOrbitControls enablePan={false} enableZoom={false} enableRotate={!isMobile} makeDefault />
+            </Suspense>
+          </Canvas>
+        ) : (
+          <Avatar3DFallback />
+        )}
       </div>
 
       {/* Right: Terminal-style Skills */}
-      <SkillsConsole />
+      <SkillsConsole isReducedMotion={isReducedMotion} />
     </div>
   );
 }

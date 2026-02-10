@@ -3,46 +3,176 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- Viewport and Mobile Optimization -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- SEO and Description -->
+    <meta name="description" content="Shaunak Pedgaonkar - Full Stack Developer & Software Engineer Portfolio. Expertise in React, Node.js, Python, Cloud Architecture, and 3D Web Experiences." />
+    <meta name="keywords" content="Shaunak Pedgaonkar, Full Stack Developer, Software Engineer, React, Node.js, Python, AWS, Portfolio" />
+    <meta name="author" content="Shaunak Pedgaonkar" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Shaunak Pedgaonkar - Portfolio" />
+    <meta property="og:description" content="Full Stack Developer & Software Engineer specializing in scalable applications and 3D web experiences." />
+    <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+
+    <!-- Apple/iOS -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Shaunak Portfolio" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Preconnect to external resources for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    <!-- DNS Prefetch for CDNs -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" />
+    </noscript>
+
+    <!-- Preload critical 3D assets -->
+    <link rel="preload" href="%PUBLIC_URL%/model.glb" as="fetch" crossorigin />
+
+    <!-- Critical CSS for initial render (prevents FOUC) -->
+    <style>
+      /* Critical CSS - Inline for fast first paint */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: 16px; }
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Initial loading state */
+      #root {
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+
+      /* Preloader placeholder (shown before React loads) */
+      .initial-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f0f 100%);
+      }
+
+      .initial-loader-content {
+        text-align: center;
+      }
+
+      .initial-loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 102, 204, 0.2);
+        border-top-color: #ff66cc;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+      }
+
+      .initial-loader-text {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.875rem;
+        letter-spacing: 0.1em;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Hide initial loader when React is ready */
+      body.loaded .initial-loader {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        .initial-loader-spinner {
+          animation: none;
+          border-color: #ff66cc;
+        }
+      }
+    </style>
+
+    <title>Shaunak Pedgaonkar | Portfolio</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- Initial loader (shown before React hydrates) -->
+    <div class="initial-loader" id="initial-loader">
+      <div class="initial-loader-content">
+        <div class="initial-loader-spinner"></div>
+        <div class="initial-loader-text">LOADING</div>
+      </div>
+    </div>
+
+    <noscript>
+      <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:2rem;">
+        <div>
+          <h1 style="margin-bottom:1rem;">JavaScript Required</h1>
+          <p>This portfolio requires JavaScript to display the interactive 3D experience.</p>
+          <p style="margin-top:1rem;">Please enable JavaScript in your browser settings.</p>
+        </div>
+      </div>
+    </noscript>
+
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <!-- Load Three.js and Vanta.js with defer for non-blocking -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.globe.min.js"></script>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
-    
- 
-    
+    <!-- Remove initial loader once page is interactive -->
+    <script>
+      // Remove initial loader when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        // Give React a moment to mount, then hide initial loader
+        setTimeout(function() {
+          var loader = document.getElementById('initial-loader');
+          if (loader) {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            setTimeout(function() {
+              loader.remove();
+            }, 300);
+          }
+        }, 100);
+      });
+
+      // Fallback: Remove loader after max wait time
+      setTimeout(function() {
+        var loader = document.getElementById('initial-loader');
+        if (loader) loader.remove();
+      }, 5000);
+    </script>
   </body>
 </html>

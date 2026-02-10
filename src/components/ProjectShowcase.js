@@ -15,9 +15,8 @@ export default function ProjectShowcase() {
 
       {/* Mobile version */}
       <p className="mobile-only">
-        I'm Shaunak, a Computer Science graduate from Trinity College Dublin.  
-        I design scalable cloud systems, full-stack apps, and ML tools that solve real-world problems.
-
+        Computer Science postgraduate from Trinity College Dublin.
+        I build scalable cloud systems, full-stack applications, and intelligent tools that solve real-world problems.
       </p>
     </div>
   );

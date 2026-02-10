@@ -1,68 +1,337 @@
-.avatar-container {
-    display: flex;
-    height: 100vh;
-    background: #0b0c10;
-    color: white;
+/* ============================================
+   AVATAR WITH SKILLS STYLES
+   ============================================ */
+
+/* Main Container */
+.avatar-skills-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: #18191a;
+  align-items: center;
+  justify-content: center;
+  font-family: Orbitron, 'Segoe UI', Arial, sans-serif;
+  overflow: hidden;
+  padding: clamp(1rem, 2vh, 2rem);
+  gap: clamp(1rem, 3vw, 3rem);
+}
+
+/* Avatar Section (Left) */
+.avatar-section {
+  width: clamp(280px, 40vw, 600px);
+  height: clamp(300px, 70vh, 80vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #333 50%, transparent 100%);
+  border-radius: clamp(12px, 2vw, 24px);
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+/* Skills Console (Right) */
+.skills-console {
+  background: #111;
+  color: #00ff00;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  padding: clamp(16px, 3vw, 32px);
+  border-radius: clamp(8px, 1.5vw, 12px);
+  width: clamp(280px, 35vw, 450px);
+  min-height: clamp(200px, 40vh, 350px);
+  max-height: 80vh;
+  box-shadow: 0 0 16px rgba(0, 255, 0, 0.2);
+  font-size: clamp(12px, 1.2vw, 16px);
+  line-height: 1.7;
+  white-space: pre-line;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.skills-console-header {
+  font-weight: bold;
+  margin-bottom: clamp(8px, 1.5vw, 16px);
+  font-size: clamp(14px, 1.4vw, 18px);
+}
+
+.skills-console-text {
+  word-break: break-word;
+}
+
+.skills-console-cursor {
+  display: inline-block;
+  width: clamp(8px, 1vw, 12px);
+  height: clamp(16px, 1.5vw, 22px);
+  background: #00ff00;
+  margin-top: 8px;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Avatar 3D Fallback */
+.avatar-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.avatar-fallback-icon {
+  color: #ff66cc;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.avatar-fallback p {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .avatar-skills-container {
+    gap: 2rem;
+    padding: 1.5rem;
   }
-  
-  .left-section,
-  .right-section {
-    flex: 1;
-    display: flex;
-    align-items: center;
+
+  .avatar-section {
+    width: 45vw;
+    height: 60vh;
+  }
+
+  .skills-console {
+    width: 40vw;
+    font-size: 14px;
+  }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  .avatar-section canvas {
+    pointer-events: none !important;
+    touch-action: pan-x !important;
+  }
+
+  .avatar-skills-container {
+    flex-direction: column;
     justify-content: center;
-    padding: 2rem;
-  }
-  
-  .center-section {
-    flex: 2;
-    display: flex;
     align-items: center;
-    justify-content: center;
-  }
-  
-  .intro-box {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 2rem;
-    border-radius: 12px;
-    max-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-  }
-  
-  .right-section {
-    background: rgba(12, 12, 12, 0.8);
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    padding-top: clamp(70px, 12vh, 90px);
+    padding-bottom: clamp(20px, 4vh, 40px);
+    gap: 1.25rem;
     overflow-y: auto;
-    font-family: monospace;
-  }
-  
-  .right-section .terminal-container {
-    max-width: 500px;
+    overflow-x: hidden;
   }
 
-  @media (max-width: 768px) {
-    .avatar-container {
-      flex-direction: column;
-      height: auto;
-    }
-  
-    .left-section, .center-section, .right-section {
-      flex: unset;
-      width: 100%;
-      padding: 1rem;
-    }
-  
-    .intro-box {
-      max-width: 100%;
-      padding: 1.5rem;
-    }
-  
-    .right-section {
-      overflow-y: visible;
-    }
+  .avatar-section {
+    width: 92vw;
+    max-width: none;
+    height: clamp(250px, 42vh, 380px);
+    flex-shrink: 0;
+    margin: 0 auto;
   }
-  
 
-  
-  
+  .skills-console {
+    width: 90vw;
+    max-width: 400px;
+    min-height: auto;
+    max-height: none;
+    padding: 1.25rem 1.5rem;
+    font-size: 13px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .skills-console-header {
+    font-size: 15px;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+
+  .skills-console-text {
+    line-height: 1.8;
+  }
+}
+
+/* Small mobile (up to 480px) */
+@media (max-width: 480px) {
+  .avatar-skills-container {
+    padding: 0.75rem;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    gap: 1rem;
+  }
+
+  .avatar-section {
+    width: 94vw;
+    max-width: none;
+    height: clamp(220px, 38vh, 320px);
+    border-radius: 12px;
+  }
+
+  .skills-console {
+    width: 94vw;
+    max-width: 360px;
+    padding: 1rem 1.25rem;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .skills-console-header {
+    font-size: 14px;
+  }
+
+  .skills-console-text {
+    line-height: 1.7;
+  }
+}
+
+/* Extra small mobile (up to 360px) */
+@media (max-width: 360px) {
+  .avatar-skills-container {
+    padding-top: 55px;
+    gap: 0.875rem;
+  }
+
+  .avatar-section {
+    height: clamp(140px, 25vh, 180px);
+    max-width: 280px;
+  }
+
+  .skills-console {
+    font-size: 11px;
+    padding: 0.875rem 1rem;
+    max-width: 320px;
+  }
+
+  .skills-console-header {
+    font-size: 13px;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .avatar-skills-container {
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .avatar-section {
+    width: 40vw;
+    height: 80vh;
+  }
+
+  .skills-console {
+    width: 45vw;
+    height: 80vh;
+    font-size: 11px;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Large screens (1440px+) */
+@media (min-width: 1440px) {
+  .avatar-section {
+    width: 500px;
+    height: 75vh;
+  }
+
+  .skills-console {
+    width: 480px;
+    font-size: 17px;
+    padding: 2rem;
+  }
+
+  .skills-console-header {
+    font-size: 20px;
+  }
+}
+
+/* 4K displays */
+@media (min-width: 2560px) {
+  .avatar-skills-container {
+    gap: 4rem;
+  }
+
+  .avatar-section {
+    width: 600px;
+    height: 70vh;
+    border-radius: 32px;
+  }
+
+  .skills-console {
+    width: 550px;
+    font-size: 20px;
+    padding: 2.5rem;
+    border-radius: 16px;
+  }
+
+  .skills-console-header {
+    font-size: 24px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skills-console-cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Legacy styles (for backwards compatibility) */
+.avatar-container {
+  display: flex;
+  height: 100vh;
+  background: #0b0c10;
+  color: white;
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.center-section {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-box {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.right-section {
+  background: rgba(12, 12, 12, 0.8);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-y: auto;
+  font-family: monospace;
+}
+
+.right-section .terminal-container {
+  max-width: 500px;
+}

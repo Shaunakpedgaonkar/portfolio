@@ -1,26 +1,31 @@
+/* ============================================
+   PROJECT SHOWCASE STYLES
+   ============================================ */
 .project-showcase-container.no-card-landing {
   position: absolute;
-  top: 30vh;
-  left: 10vw;
+  top: clamp(20vh, 28vh, 35vh);
+  left: clamp(5vw, 10vw, 15vw);
   color: white;
-  font-family: 'Red Hat Text', sans-serif;
-  max-width: 600px;
+  font-family: 'Red Hat Text', 'Poppins', sans-serif;
+  max-width: min(600px, 45vw);
   z-index: 10;
+  padding: 0 1rem;
 }
 
 .project-showcase-container.no-card-landing h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 4vw, 3rem);
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
   letter-spacing: 0.5px;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  line-height: 1.2;
 }
 
 /* Desktop paragraph */
 .project-showcase-container.no-card-landing p.desktop-only {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #f0f0f0;
   text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
   white-space: pre-line;
@@ -31,18 +36,46 @@
   display: none;
 }
 
-/* Mobile Responsive */
-@media screen and (max-width: 768px) {
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .project-showcase-container.no-card-landing {
+    max-width: 50vw;
+    left: 8vw;
     top: 25vh;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    padding: 0 1rem;
   }
 
   .project-showcase-container.no-card-landing h1 {
-    font-size: 2rem;
+    font-size: 2.25rem;
+  }
+
+  .project-showcase-container.no-card-landing p.desktop-only {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile (up to 768px) */
+@media screen and (max-width: 768px) {
+  .project-showcase-container.no-card-landing {
+    position: absolute;
+    top: 40%;
+    bottom: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 1.5rem;
+    max-width: 92vw;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .project-showcase-container.no-card-landing h1 {
+    font-size: clamp(1.6rem, 7vw, 2.25rem);
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
 
   /* Hide desktop text */
@@ -53,12 +86,99 @@
   /* Show mobile text */
   .project-showcase-container.no-card-landing p.mobile-only {
     display: block;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 3.8vw, 1.05rem);
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.65;
     color: #f0f0f0;
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
     white-space: pre-line;
-    margin-top: 1rem;
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+}
+
+/* Small mobile (up to 480px) */
+@media screen and (max-width: 480px) {
+  .project-showcase-container.no-card-landing {
+    padding: 0 1.25rem;
+  }
+
+  .project-showcase-container.no-card-landing h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-showcase-container.no-card-landing p.mobile-only {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+}
+
+/* Extra small mobile (up to 360px) */
+@media screen and (max-width: 360px) {
+  .project-showcase-container.no-card-landing {
+    padding: 0 1rem;
+  }
+
+  .project-showcase-container.no-card-landing h1 {
+    font-size: 1.35rem;
+  }
+
+  .project-showcase-container.no-card-landing p.mobile-only {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+}
+
+/* Landscape mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .project-showcase-container.no-card-landing {
+    top: 15vh;
+    left: 5vw;
+    transform: none;
+    text-align: left;
+    max-width: 45vw;
+  }
+
+  .project-showcase-container.no-card-landing h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-showcase-container.no-card-landing p.desktop-only,
+  .project-showcase-container.no-card-landing p.mobile-only {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+}
+
+/* Large screens (1440px+) */
+@media screen and (min-width: 1440px) {
+  .project-showcase-container.no-card-landing {
+    max-width: 650px;
+  }
+
+  .project-showcase-container.no-card-landing h1 {
+    font-size: 3rem;
+  }
+
+  .project-showcase-container.no-card-landing p.desktop-only {
+    font-size: 1.15rem;
+  }
+}
+
+/* 4K displays */
+@media screen and (min-width: 2560px) {
+  .project-showcase-container.no-card-landing {
+    max-width: 800px;
+    left: 12vw;
+  }
+
+  .project-showcase-container.no-card-landing h1 {
+    font-size: 3.5rem;
+  }
+
+  .project-showcase-container.no-card-landing p.desktop-only {
+    font-size: 1.3rem;
   }
 }

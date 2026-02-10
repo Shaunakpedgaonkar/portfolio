@@ -1,5 +1,5 @@
 .social-icons {
-  position: fixed; /* changed from absolute for better responsiveness */
+  position: fixed;
   top: 50%;
   left: 15px;
   transform: translateY(-50%);
@@ -7,12 +7,20 @@
   flex-direction: column;
   gap: 15px;
   z-index: 100;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* Hide on experience page */
+.social-icons.social-icons-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .social-icons a {
   color: white;
   font-size: 2.1rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
@@ -25,6 +33,12 @@
     0 0 15px #00ffff,
     0 0 20px #00ffff;
   filter: brightness(1.2);
+}
+
+/* Touch feedback for mobile */
+.social-icons a:active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease;
 }
 
 .social-icons a:nth-child(1):hover {
@@ -51,15 +65,58 @@
     0 0 15px #0077b5;
 }
 
-/* ✅ No changes needed for mobile now */
+/* Mobile - centered bottom bar, slightly higher */
 @media screen and (max-width: 768px) {
   .social-icons {
-    top: 30%;
-    left: 10px;
-    gap: 12px;
+    top: auto;
+    bottom: 7vh;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 1.5rem;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 0.875rem 1.5rem;
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+  }
+
+  .social-icons.social-icons-hidden {
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
   }
 
   .social-icons a {
-    font-size: 1.9rem;
+    font-size: 2rem;
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Small mobile */
+@media screen and (max-width: 480px) {
+  .social-icons {
+    bottom: 6vh;
+    gap: 1.5rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .social-icons a {
+    font-size: 1.85rem;
+  }
+}
+
+/* Extra small mobile */
+@media screen and (max-width: 360px) {
+  .social-icons {
+    bottom: 5vh;
+    gap: 1.25rem;
+    padding: 0.65rem 1.25rem;
+  }
+
+  .social-icons a {
+    font-size: 1.75rem;
   }
 }
