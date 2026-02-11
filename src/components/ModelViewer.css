@@ -106,11 +106,6 @@ canvas {
 
 /* Mobile (up to 768px) */
 @media screen and (max-width: 768px) {
-  .model-wrapper canvas {
-    pointer-events: none !important;
-    touch-action: pan-x !important;
-  }
-
   .model-error-card {
     padding: 1rem;
   }

@@ -93,8 +93,14 @@ body.loaded {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
-  contain: layout style paint;
   background-color: #000;
+}
+
+/* Containment only on desktop — on mobile it can trap touch events */
+@media (min-width: 769px) {
+  .scroll-page {
+    contain: layout style paint;
+  }
 }
 
 /* Ensure scroll pages don't cause overflow */
@@ -371,19 +377,24 @@ body.loaded {
   .horizontal-scroll-wrapper {
     /* Momentum-based scrolling for iOS */
     -webkit-overflow-scrolling: touch;
-    /* Slightly less strict snapping for smoother mobile experience */
+    /* Less strict snapping for smoother mobile experience */
     scroll-snap-type: x proximity;
     scroll-padding: 0;
   }
 
   .scroll-page {
-    /* Prevent content shifting during scroll */
+    /* Relax snap so pages don't freeze */
+    scroll-snap-stop: normal;
+    /* GPU acceleration */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    /* GPU acceleration */
     transform: translate3d(0, 0, 0);
-    /* Contain layout for better performance */
-    contain: layout style paint;
+  }
+
+  /* All canvases non-interactive on mobile — prevents scroll traps */
+  .scroll-page canvas {
+    pointer-events: none !important;
+    touch-action: pan-x !important;
   }
 
   /* Prevent horizontal overflow issues */

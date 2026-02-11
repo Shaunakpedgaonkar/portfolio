@@ -29,8 +29,6 @@ const Navbar = () => {
           <li><a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a></li>
           <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>
           <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
-          <li><a href="/test" onClick={() => setMenuOpen(false)}>Test</a></li>
-
         </ul>
       </div>
     </nav>
